@@ -1,0 +1,27 @@
+{
+    "name": "essay-plugin/essay-plugin",
+    "description": "Skeleton plugin",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "require": {
+        "shopware/core": "6.5.*"
+    },
+    "extra": {
+        "shopware-plugin-class": "EssayPlugin\\EssayPlugin",
+        "label": {
+            "de-DE": "Skeleton plugin",
+            "en-GB": "Skeleton plugin"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "EssayPlugin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EssayPlugin\\Tests\\": "tests/"
+        }
+    }
+}

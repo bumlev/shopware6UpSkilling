@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!--<service id="LearnerPlugin\Extension\Content\Product\ProductExtensionDefinition">
+            <tag name="shopware.entity.definition" entity="product_extension"/>
+        </service>
+
+        <service id="LearnerPlugin\Subscriber\CustomerSubscriber">
+            <argument type="service" id="CustomerWritingData" />
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="CustomerWritingData" class="LearnerPlugin\Service\CustomerWritingData">
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="customer_extension.repository"/>
+        </service>
+
+        <service id="LearnerPlugin\Extension\Content\Customer\CustomExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="LearnerPlugin\Extension\Content\Customer\CustomerExtensionDefinition">
+            <tag name="shopware.entity.definition" entity="customer_extension"/>
+        </service>
+
+         <service id="LearnerPlugin\Definition\ClientDefinition">
+            <tag name="shopware.entity.definition" entity="client"/>
+        </service>
+
+        <service id="LearnerPlugin\StoreFront\Controller\WorldController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <call method="setTwig">
+                <argument type="service" id="twig"/>
+            </call>
+        </service> -->
+
+    </services>
+</container>

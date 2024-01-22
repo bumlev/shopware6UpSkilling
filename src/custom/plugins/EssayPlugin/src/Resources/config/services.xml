@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- - - - - - - - - - - - - - - - - - - -Command - - - - - - - - - - - - - - - - - - -  -->
+        <service id="EssayPlugin\Command\ExampleCommand">
+            <tag name="console.command"/>
+        </service>
+
+        <!-- - - - - - - - - - - - - - - - - - - Scheduled Task - - - - - - - - - - - - - - - -  -->
+        <service id="EssayPlugin\ScheduledTask\ExampleTask">
+            <tag name="shopware.scheduled.task"/>
+        </service>
+
+
+        <!-- - - - - - - - - - - - - - - - - - - Subscribers - - - - - - - - - - - - - - - - -  -->
+        <service id="EssayPlugin\Subscriber\MySubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="EssayPlugin\Subscriber\CustomerSubscriber">
+            <argument type="service" id="CustomerService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- - - - - - - - - - - -services - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+        <service id="CustomerService" class="EssayPlugin\Service\CustomerService">
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="customer_extension.repository"/>
+        </service>
+
+        <service id="OrderService" class="EssayPlugin\Service\OrderService">
+            <argument type="service" id="order.repository"/>
+        </service>
+
+        <!--- - - - - - - - - - - - - - - - - - Entity Extension - - - - - - - - - - - - - -  -->
+        <service id="EssayPlugin\Core\Content\Customer\CustomExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="EssayPlugin\Core\Content\Product\CustomExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <!--  - - - - - - - - - - - - - - - -  -Definition Extension - - - - - - - - - - -  -->
+        <service id="EssayPlugin\Core\Content\Product\ProductExtensionDefinition">
+            <tag name="shopware.entity.definition" entity="product_extension"/>
+        </service>
+
+        <service id="EssayPlugin\Core\Content\Customer\CustomerExtensionDefinition">
+            <tag name="shopware.entity.definition" entity="customer_extension"/>
+        </service>
+
+        <!-- - - - - - - - - - - - - - - - -  -Controllers - - - - - - - - - - - - - - -    -->
+        <service id="EssayPlugin\Storefront\Controller\ExampleController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <call method="setTwig">
+                <argument type="service" id="twig"/>
+            </call>
+            <argument type="service" id="OrderService"/>
+        </service>
+
+        <!-- - - - - - - - - - - - - - - - - -Routes- - - - - - - - - - - - - - - - - - - -  -->
+        <service id="EssayPlugin\Core\Content\Example\SalesChannel\ExampleRoute">
+            <argument type="service" id="product.repository"/>
+        </service>
+
+        <!-- - - - - - - - - - - - - - - - -Entity Definition - - - - - - - - - - - - - - - -->
+        <service id="EssayPlugin\Core\Content\Yes\YesDefinition">
+            <tag name="shopware.entity.definition" entity="yes" />
+        </service>
+
+        <service id="EssayPlugin\Core\Content\Client\ClientDefinition">
+            <tag name="shopware.entity.definition" entity="client"/>
+        </service>
+
+        <!-- - - - - - - - - - - - - - - - -CustomField - - - - - - - - - - - - - - - - - - -->
+        <service id="EssayPlugin\Service\CustomFieldsInstaller">
+            <argument type="service" id="custom_field_set.repository"/>
+            <argument type="service" id="custom_field_set_relation.repository"/>
+        </service>
+
+    </services>
+</container>
